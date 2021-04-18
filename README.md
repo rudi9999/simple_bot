@@ -3,6 +3,7 @@
 requiere tener pre-instalado nodejs y npm
 
 apt install nodejs
+
 apt install npm
 
 # install javascript bot
