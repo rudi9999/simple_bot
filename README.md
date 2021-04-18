@@ -20,6 +20,6 @@ y ejecutar el script confbot
 
 ./confbot
 
-tambien puede ejecutar el script bot.js pero deve configurar previamente un archovo llamado token (en su interior el token de su bot)
+tambien puede ejecutar el script bot.js pero deve configurar previamente un archivo llamado token (en su interior el token de su bot)
 
 ./bot.js
