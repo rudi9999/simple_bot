@@ -1,0 +1,81 @@
+#!/bin/bash
+# -*- ENCODING: UTF-8 -*-
+
+bar="\e[0;36m=====================================================\e[0m"
+
+ini_token () {
+clear
+echo -e "$bar"
+echo -e "  \033[1;37mIngrese el token de su bot"
+echo -e "$bar"
+echo -n "TOKEN: "
+read opcion
+echo "$opcion" > ./token
+echo -e "$bar"
+echo -e "  \033[1;32mtoken se guardo con exito!" && echo -e "$bar" && echo -e "  \033[1;37mPara tener acceso a todos los comandos del bot\n  deve iniciar el bot en la opcion 2.\n  desde su apps (telegram). ingresar al bot!\n  digite el comando \033[1;31m/id\n  \033[1;37mel bot le respodera con su ID de telegram.\n  copiar el ID e ingresar el mismo en la opcion 3" && echo -e "$bar"
+read foo
+bot_gen
+}
+
+start_bot () {
+[[ ! -e "./token" ]] && echo "null" > ./token
+unset PIDGEN
+PIDGEN=$(ps x|grep -v grep|grep "teleBot")
+if [[ ! $PIDGEN ]]; then
+screen -dmS teleBot ./bot.js
+else
+bot=$(ps x|grep -v grep|grep "teleBot" | awk {'print $1'})
+kill $bot
+clear
+echo -e "$bar"
+echo -e "\033[1;31m            BotGen fuera de linea"
+echo -e "$bar"
+sleep 2
+fi
+bot_gen
+}
+
+ayuda_fun () {
+clear
+echo -e "$bar"
+echo -e "            \e[47m\e[30m Instrucciones rapidas \e[0m"
+echo -e "$bar"
+echo -e "\033[1;37m   Es necesario crear un bot en \033[1;32m@BotFather "
+echo -e "$bar"
+echo -e "\033[1;32m1- \033[1;37mEn su apps telegram ingrese a @BotFather"
+echo -e "\033[1;32m2- \033[1;37mDigite el comando \033[1;31m/newbot"
+echo -e "\033[1;32m3- @BotFather \033[1;37msolicitara que\n   asigne un nombre a su bot"
+echo -e "\033[1;32m4- @BotFather \033[1;37msolicitara que asigne otro nombre,\n   esta vez deve finalizar en bot eje: \033[1;31mXXX_bot"
+echo -e "\033[1;32m5- \033[1;37mObtener token del bot creado.\n   En \033[1;32m@BotFather \033[1;37mdigite el comando \033[1;31m/token\n   \033[1;37mseleccione el bot y copie el token."
+echo -e "\033[1;32m6- \033[1;37mIngrese el token\n   en la opcion \033[1;32m[1] \033[1;31m> \033[1;37mTOKEN DEL BOT"
+echo -e "\033[1;32m7- \033[1;37mPoner en linea el bot\n   en la opcion \033[1;32m[2] \033[1;31m> \033[1;37mINICIAR/PARAR BOT"
+echo -e "$bar"
+read foo
+bot_gen
+}
+
+bot_gen () {
+clear
+unset PID_GEN
+PID_GEN=$(ps x|grep -v grep|grep "bot.js")
+[[ ! $PID_GEN ]] && PID_GEN="\033[1;31moffline" || PID_GEN="\033[1;32monline"
+
+echo -e "$bar"
+echo -e "     \e[47m \e[30m>>>>>>  simple_Bot by \e[1;36mRufu99\e[1;32m  \e[0m\e[47m \e[30m<<<<<< \e[0m"
+echo -e "$bar"
+echo -e "\033[1;32m[1] \033[1;36m> \033[1;37mTOKEN DEL BOT"
+echo -e "\033[1;32m[2] \033[1;36m> \033[1;37mINICIAR/PARAR BOT $PID_GEN\033[0m"
+echo -e "\033[1;32m[3] \033[1;36m> \033[1;37mMANUAL"
+echo -e "$bar"
+echo -e "\e[1;32m[0] \e[36m>\e[0m \e[47m\e[30m <<ATRAS "
+echo -e "$bar"
+echo -n "Opcion: "
+read opcion
+case $opcion in
+0) exit;;
+1) ini_token;;
+2) start_bot;;
+3) ayuda_fun;;
+esac
+}
+bot_gen
