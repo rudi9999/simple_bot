@@ -1,4 +1,4 @@
-# simple_bot
+# simple_bot.
 
 requiere tener pre-instalado nodejs y npm
 
@@ -10,7 +10,7 @@ apt install npm
 
 sudo wget https://raw.githubusercontent.com/rudi9999/simple_bot/main/node/install.sh; chmod +x install.sh; ./install.sh
 
-# nota:
+# nota::
 
 una vez instalado, deven dirigirse al directorio botgrupo con el comand "cd"
 
